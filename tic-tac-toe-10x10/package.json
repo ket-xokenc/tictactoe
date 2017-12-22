@@ -1,0 +1,37 @@
+{
+  "name": "tic-tac-toe-10x10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "eslint ./**/*.js && npm run serve",
+    "serve": "node ./source/index.js &",
+    "bot": "node ./bot/index.js &",
+    "test": "npm start && npm run bot && nightwatch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/YuliiaNaumenko/tic-tac-toe-10x10.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/YuliiaNaumenko/tic-tac-toe-10x10#readme",
+  "dependencies": {
+    "@std/esm": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-router": "0.0.1",
+    "lodash": "^4.17.4",
+    "socket.io": "^2.0.4",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nightwatch": "^0.9.19",
+    "prettier": "^1.9.2",
+    "socket.io-client": "^2.0.4"
+  }
+}

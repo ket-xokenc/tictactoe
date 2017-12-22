@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="asserts.game"
+    errors="1" failures="0" hostname="" id="" package="asserts" skipped="0"
+    tests="1" time="0.005000" timestamp="Wed, 20 Dec 2017 09:41:59 GMT">
+  
+    <testcase name="Check multi move for cell" classname="asserts.game" time="0.005000" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Asserts / Game / Check multi move for cell]:
+
+  TypeError: page.cell is not a function
+    at checkMultiMove (/Users/js_monk/Projects/tic-tac-toe-10x10/tests/asserts/game.js:155:19)
+    at Object.Check multi move for cell (/Users/js_monk/Projects/tic-tac-toe-10x10/tests/asserts/game.js:193:5)
+    at Module.call (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:796:13)
+    at /Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:556:49
+    at runSingle (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:137:13)
+    at flush (/Users/js_monk/Projects/tic-tac-toe-10x10/node_modules/q/q.js:125:13)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

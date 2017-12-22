@@ -1,0 +1,24 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "io": true
+  },
+  "rules": {
+    "consistent-return": "off",
+    "no-bitwise": "off",
+    "no-plusplus": "off",
+    "no-mixed-operators": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "no-unused-expressions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-await-in-loop": "off",
+    "arrow-parens": "off",
+    "no-confusing-arrow": "off"
+  }
+}

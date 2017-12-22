@@ -1,0 +1,198 @@
+.game-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.field {
+  margin: 0.8em;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  background: white;
+  box-shadow: 0 0 0 0.8em white;
+}
+
+.field .row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.field .cell {
+  position: relative;
+  display: block;
+  width: 2em;
+  height: 2em;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.field .cell.ch,
+.field .cell.r {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.field .ch:before,
+.field .r:before {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-indent: 0;
+  opacity: 1;
+  pointer-events: none;
+  font-size: 2rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: not-allowed;
+}
+
+.field .ch:before {
+  content: 'x';
+  color: #3c763d;
+}
+
+.field .r:before {
+  content: 'o';
+  color: #a94442;
+}
+
+.field .cell.win:after {
+  content: '';
+  top: 50%;
+  height: 0px;
+  display: block;
+  position: absolute;
+  border: 1px solid #191970;
+  z-index: 1;
+}
+
+.field .cell.win.horizontal:after {
+  left: -5%;
+  width: 110%;
+}
+
+.field .cell.win.vertical:after {
+  left: -5%;
+  width: 110%;
+  transform: rotate(90deg);
+}
+
+.field .diagonal-right:after {
+  left: -25%;
+  width: 150%;
+  transform: rotate(45deg);
+}
+
+.field .diagonal-left:after {
+  left: -25%;
+  width: 150%;
+  transform: rotate(-45deg);
+}
+
+.field .won-message {
+  color: #191970;
+}
+
+.field-wrap .info {
+  width: 100%;
+  display: none;
+  text-align: left;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 12px 10px;
+  border: 1px solid transparent;
+  padding-bottom: 11px;
+  border-radius: 4px;
+}
+
+.field-wrap .info.active {
+  display: flex;  
+}
+
+.field-wrap .info.won-title {
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.field-wrap .info.info-title {
+  color: #3c4e76;
+  background-color: #d8eff0;
+  text-align: center;
+}
+
+.field-wrap .info .message {
+  margin-right: 12px;
+  display: inline-block;
+  flex-grow: 2;
+  color: inherit;
+}
+
+.field-wrap .won-title .restart-btn {
+  margin: 0;
+  padding: 14px 10px;
+  width: auto;
+}
+
+.chat {
+  width: 280px;
+  margin: 0 0.8em;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background: white;
+  border-radius: 4px;
+  border: 0px solid white;
+  background: #ecf0f1;
+  overflow: hidden;
+}
+
+.chat-content {
+  flex: 1;
+}
+
+.chat-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333f4d;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 12px 10px;
+  border: 1px solid transparent;
+  padding-bottom: 11px;
+  border-radius: 4px 4px 0 0;
+  font-size: 24px;
+  font-weight: 400;
+  min-height: 70px;
+}
+
+.message-time {
+  display: inline-block;
+  color: #738ba3;
+  font-size: 9px;
+  width: 55px;
+}
+
+.new-message {
+  margin: 8px;
+  margin-top: 5px;
+  height: 60px;
+  resize: none;
+  background: white;
+  border-width: 0px;
+  border-radius: 3px;
+  padding: 10px 10px 0px 10px;
+  font-size: 12px;
+  z-index: 1;
+  border: 1px solid #ccc;
+}
+
+.chat-btn {
+  margin: 3px 8px 8px;
+}

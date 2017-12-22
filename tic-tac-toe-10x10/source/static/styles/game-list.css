@@ -1,0 +1,16 @@
+.game-list-wrap {
+  border: 0px solid transparent;
+  border-radius: 4px;
+  width: 300px;
+  background: white;
+  overflow: hidden;
+}
+
+.game-list {
+  padding: 20px;
+}
+
+.game-list-btn {
+  margin: 30px;
+  padding: 16px 50px;
+}

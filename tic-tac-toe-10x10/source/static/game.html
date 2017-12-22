@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>tic-tac-toe</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link href="./styles/main.css" rel="stylesheet">
+  <link href="./styles/field.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <div class="game-wrap">
+      <div class="field-wrap">
+        <div class="won-title info" id="won-title">
+          <span class="message">Crosses won!</span>
+          <a href="/game-list.html" class="restart-btn btn">Новая игра</a>
+        </div>
+        <div class="info-title info active" id="info-title">
+          <span class="message">Zero step!</span>
+          <button class="surrend-btn btn" id="surrend-btn">Сдаться</button>
+        </div>
+        <div class="field" id="game-space">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="alert" class="alert">
+    Some error message!
+  </div>
+  <script type="module" src="./scripts/game/controller.js"></script>
+</body>
+
+</html>

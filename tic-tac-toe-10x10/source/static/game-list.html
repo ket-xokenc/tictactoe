@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>tic-tac-toe</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link href="./styles/main.css" rel="stylesheet">
+  <link href="./styles/modal.css" rel="stylesheet">
+  <link href="./styles/game-list.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <div class="game-list-wrap">
+      <h3 class="title title-original" id="title">
+        Существующие игры
+      </h3>
+      <ul class="simple-list" id="game-list">
+      </ul>
+      <button class="btn btn-original game-list-btn" id="create-game">Создать игру</button>
+    </div>
+    <div class="modal-wrap" id="modal-wrap">
+      <div class="modal">
+        <div class="title">
+          Ожидаем начала игры
+        </div>
+        <div class="spinner">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </div>
+      </div>
+    </div>
+    <div id="alert" class="alert error">
+      Some error message!
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script type="module" src="./scripts/game-list/view.js"></script>
+</body>
+
+</html>
