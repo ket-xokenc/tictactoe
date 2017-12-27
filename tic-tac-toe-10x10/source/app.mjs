@@ -14,8 +14,9 @@ const io = socket(serverWrapper);
 
 initGameIO(io);
 
-const { url } = import.meta;
-const dirname = url.slice('file://'.length, url.lastIndexOf('/'));
+// const { url } = import.meta;
+const dirname = process.env.PWD;
+console.log(path.join(dirname, '/static'));
 
 const PORT = process.env.PORT || 3000;
 

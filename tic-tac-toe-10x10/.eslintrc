@@ -19,6 +19,7 @@
     "import/no-extraneous-dependencies": "off",
     "no-await-in-loop": "off",
     "arrow-parens": "off",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "linebreak-style": "off"
   }
 }
