@@ -25,27 +25,19 @@ socket.on('add', gameId => {
   // alert(`Получены данные ${JSON.stringify(game, null, 2)}`);
 });
 
-socket.on('remove', event => {});
+socket.on('remove', gameId => {
+  //  {action: 'remove', id: '345678'} - удалить из списка "Существующие игры" игру с id ”345678". Она просто должна исчезнуть
+  // const gameList = document.querySelector('#game-list');
+  // gameList.removeChild.document.querySelector(`#${gameId}`).parentNode;
+});
 
 socket.on('startGame', (game) => {
   document.location = 'game.html';
   localStorage.setItem('side', game.side);
-  // fetch('/game', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Player-ID': socket.id,
-  //     'Game-ID': game.id,
-  //   },
-  //   // body: JSON.stringify({ 'Game-ID': game.id, 'Player-ID': socket.id }),
-    
-  // }).then((res) => {
-  //   debugger;
-  //   console.log(res);
-  // });
 });
 
 socket.on('exception', error => {
+  //  {action: 'exception', message: 'message'} - вы делаете что-то не так и веб сервер сообщает Вам об этом.
   alert(`Ошибка ${error.message}`);
 });
 
