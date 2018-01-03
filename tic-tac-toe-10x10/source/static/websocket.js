@@ -1,4 +1,6 @@
 const socket = io('/games');
+
+
 // socket.on('connect', () => {
 //   // alert('Соединение установлено.');
 // });
@@ -10,7 +12,8 @@ socket.on('add', gameId => {
   const newGameEl = document.createElement('li');
   const newGameLnk = document.createElement('a');
   newGameEl.classList.add('simple-list-item', 'link-item');
-  newGameLnk.setAttribute('href', gameId.id);
+  newGameLnk.setAttribute('href', '#');
+  newGameLnk.setAttribute('id', gameId.id);
   newGameLnk.innerHTML = `Room ${counter}`;
   newGameEl.appendChild(newGameLnk);
   newGameLnk.addEventListener('click', joinTheGame);
@@ -24,28 +27,45 @@ socket.on('add', gameId => {
 
 socket.on('remove', event => {});
 
-socket.on('startGame', () => {
+socket.on('startGame', (game) => {
   document.location = 'game.html';
+  localStorage.setItem('side', game.side);
+  // fetch('/game', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Player-ID': socket.id,
+  //     'Game-ID': game.id,
+  //   },
+  //   // body: JSON.stringify({ 'Game-ID': game.id, 'Player-ID': socket.id }),
+    
+  // }).then((res) => {
+  //   debugger;
+  //   console.log(res);
+  // });
 });
 
 socket.on('exception', error => {
   alert(`Ошибка ${error.message}`);
 });
 
-const startGameBtn = document.querySelector('#create-game');
+const createGameBtn = document.querySelector('#create-game');
 
-function startGameHandler() {
+function createGameHandler() {
   fetch('/newGame', { method: 'POST' })
     .then(response => response.json())
-    .then(userId => {
+    .then(response => {
+      // response.json();
       const loadMsg = document.querySelector('#modal-wrap');
       loadMsg.style.display = 'block';
+      localStorage.setItem('Player-ID', socket.id);
+      localStorage.setItem('Game-ID', response.yourId);
       return fetch('/gameReady', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ playerId: socket.id, gameId: userId.yourId }),
+        body: JSON.stringify({ playerId: socket.id, gameId: response.yourId }),
       }).then(res => {
         if (res.status >= 400 && res.status !== 410) {
           const errorMsg = document.querySelector('#alert');
@@ -55,7 +75,8 @@ function startGameHandler() {
           errorMsg.style.display = 'block';
           errorMsg.innerHTML = 'Ошибка старта игры: другой игрок не ответил';
         } else if (res.status >= 200 && res.status < 300) {
-          console.log(res.text());
+
+          // display first player step
         }
       });
     })
@@ -63,17 +84,19 @@ function startGameHandler() {
     .catch(err => {
       const errorMsg = document.querySelector('#alert');
       errorMsg.innerHTML = 'Ошибка создания игры';
-      startGameBtn.removeAttribute('disabled');
+      createGameBtn.removeAttribute('disabled');
     });
 
-  startGameBtn.setAttribute('disabled', true);
+  createGameBtn.setAttribute('disabled', true);
 }
 
-startGameBtn.addEventListener('click', startGameHandler);
+createGameBtn.addEventListener('click', createGameHandler);
 
 function joinTheGame(event) {
   event.preventDefault();
-  const roomId = event.target.getAttribute('href');
+  const roomId = event.target.getAttribute('id');
+  localStorage.setItem('Player-ID', socket.id);
+  localStorage.setItem('Game-ID', roomId);
   fetch('/gameReady', {
     method: 'POST',
     headers: {
@@ -81,5 +104,4 @@ function joinTheGame(event) {
     },
     body: JSON.stringify({ playerId: socket.id, gameId: roomId }),
   });
-  // console.log((playerId: socket.id), (gameId: roomId));
 }
