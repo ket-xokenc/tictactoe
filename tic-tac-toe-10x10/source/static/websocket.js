@@ -7,6 +7,20 @@ const socket = io('/games');
 
 let counter = 1;
 
+function joinTheGame(event) {
+  event.preventDefault();
+  const roomId = event.target.getAttribute('id');
+  localStorage.setItem('Player-ID', socket.id);
+  localStorage.setItem('Game-ID', roomId);
+  fetch('/gameReady', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ playerId: socket.id, gameId: roomId }),
+  });
+}
+
 socket.on('add', gameId => {
   const gameList = document.querySelector('#game-list');
   const newGameEl = document.createElement('li');
@@ -26,9 +40,12 @@ socket.on('add', gameId => {
 });
 
 socket.on('remove', gameId => {
-  //  {action: 'remove', id: '345678'} - удалить из списка "Существующие игры" игру с id ”345678". Она просто должна исчезнуть
+  //  {action: 'remove', id: '345678'} - удалить из списка "Существующие игры"
+  // игру с id ”345678". Она просто должна исчезнуть
+  // console.log(document.querySelector(`#${gameId.id}`));
+  // debugger;
   // const gameList = document.querySelector('#game-list');
-  // gameList.removeChild.document.querySelector(`#${gameId}`).parentNode;
+  // gameList.removeChild.document.querySelector(`#${gameId.id}`).parentNode;
 });
 
 socket.on('startGame', (game) => {
@@ -37,7 +54,8 @@ socket.on('startGame', (game) => {
 });
 
 socket.on('exception', error => {
-  //  {action: 'exception', message: 'message'} - вы делаете что-то не так и веб сервер сообщает Вам об этом.
+  //  {action: 'exception', message: 'message'} - вы делаете что-то не так и веб
+  // сервер сообщает Вам об этом.
   alert(`Ошибка ${error.message}`);
 });
 
@@ -73,7 +91,7 @@ function createGameHandler() {
       });
     })
     .then(() => {})
-    .catch(err => {
+    .catch(() => {
       const errorMsg = document.querySelector('#alert');
       errorMsg.innerHTML = 'Ошибка создания игры';
       createGameBtn.removeAttribute('disabled');
@@ -84,16 +102,3 @@ function createGameHandler() {
 
 createGameBtn.addEventListener('click', createGameHandler);
 
-function joinTheGame(event) {
-  event.preventDefault();
-  const roomId = event.target.getAttribute('id');
-  localStorage.setItem('Player-ID', socket.id);
-  localStorage.setItem('Game-ID', roomId);
-  fetch('/gameReady', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ playerId: socket.id, gameId: roomId }),
-  });
-}
