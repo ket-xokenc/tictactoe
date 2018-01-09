@@ -8,12 +8,11 @@
 
   "selenium": {
     "start_process": true,
-    "server_path":
-      "/usr/local/Cellar/selenium-server-standalone/3.8.1/libexec/selenium-server-standalone-3.8.1.jar",
+    "server_path": "C:\\Users\\Public\\Documents\\selenium-server-standalone-3.8.1.jar",
     "log_path": "",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver": "/usr/local/Cellar/chromedriver/2.34/bin/chromedriver"
+      "webdriver.chrome.driver": "C:\\Users\\Public\\Documents\\chromedriver.exe"
     }
   },
 

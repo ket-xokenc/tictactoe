@@ -7,7 +7,7 @@
     "start": "eslint ./**/*.js && npm run serve",
     "serve": "cd source && node ./index.js",
     "bot": "node ./bot/index.js &",
-    "test": "npm start && npm run bot && nightwatch",
+    "test": "npm run serve && npm run bot && nightwatch",
     "serve:windows": "SET PWD=C:\\Users\\Tanya\\projects\\tic-tac-toe\\tic-tac-toe-10x10\\source&& npm run serve"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "express": "^4.16.2",
     "express-router": "0.0.1",
     "lodash": "^4.17.4",
+    "selenium-webdriver": "^3.6.0",
     "socket.io": "^2.0.4",
     "uuid": "^3.1.0"
   },

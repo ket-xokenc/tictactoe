@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="7">
+
+  <testsuite name="game-list"
+    errors="0" failures="0" hostname="" id="" package="game-list" skipped="0"
+    tests="7" time="28.69" timestamp="Tue, 09 Jan 2018 10:07:31 GMT">
+  
+    <testcase name="Check initial lobby state elements" classname="game-list" time="5.562" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check start game by game owner" classname="game-list" time="4.278" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check start game by second player" classname="game-list" time="3.841" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check remove game" classname="game-list" time="4.111" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check exception handling" classname="game-list" time="3.461" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check create game error handling" classname="game-list" time="3.701" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check unkonw create game error handling" classname="game-list" time="3.732" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Game / Check initial game state]:
+
+  TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of /side=(x|o)/gi.exec
+    at Object.client.url.result (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\tests\asserts\game.js:13:37)
+    at HttpRequest.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\index.js:366:18)
+    at emitTwo (events.js:126:13)
+    at HttpRequest.emit (events.js:214:7)
+    at HttpRequest.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\index.js:382:15)
+    at emitThree (events.js:136:13)
+    at HttpRequest.emit (events.js:217:7)
+    at IncomingMessage.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\http\request.js:170:16)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>
