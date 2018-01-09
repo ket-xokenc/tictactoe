@@ -43,7 +43,7 @@ function showGameOverMsg(side) {
 function showWhoMoves(step) {
   const msg = document.querySelector('#info-title .message');
   // msg.textContent = step === 'x' ? 'Chross step!' : 'Zero step!';
-  msg.textContent = step === 'x' ? 'Ваш ход' : 'Ожидайте!';
+  msg.textContent = step === true ? 'Ваш ход' : 'Ожидайте!';
 }
 
 function crossCellsForWin(comb, type) {
@@ -67,14 +67,16 @@ function subscribe() {
         // not my step, waiting for enemy step
         if (!response.ended) {
           // waiting
-          showWhoMoves(localStorage.getItem('side') === 'x' ? 'r' : 'x');
+          showWhoMoves(false);
+          field.removeEventListener('click', cellEventHandler);
           setTimeout(subscribe, 300);
         } else {
           showGameOverMsg(response.win);
         }
       } else {
         // my step
-        showWhoMoves(localStorage.getItem('side'));
+        showWhoMoves(true);
+        field.addEventListener('click', cellEventHandler);
         const prevMove = document.querySelector(`[data-index='${response.move}']`);
         prevMove.classList.add(localStorage.getItem('side') === 'x' ? 'r' : 'ch');
         if (response.ended === true) {
@@ -116,9 +118,14 @@ function getGameState() {
   })
     .then(response => response.json())
     .then(response => {
-      showWhoMoves(response.step);
       if (response.step !== localStorage.getItem('side')) {
+        showWhoMoves(false);
+        // disable field
+        field.removeEventListener('click', cellEventHandler);
         subscribe();
+      } else {
+        field.addEventListener('click', cellEventHandler);
+        showWhoMoves(true);
       }
       if (response.ended === true) {
         if (response.win !== null) {
@@ -156,7 +163,9 @@ function cellEventHandler(event) {
           case 200:
             cellClass = localStorage.getItem('side') === 'x' ? 'ch' : 'r';
             event.target.classList.add(cellClass);
-            showWhoMoves(cellClass === 'ch' ? 'o' : 'x'); // waiting
+            showWhoMoves(false); // waiting
+            // disable field
+            field.removeEventListener('click', cellEventHandler);
             subscribe();
             break;
           case 410:

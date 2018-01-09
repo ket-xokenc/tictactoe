@@ -10,19 +10,16 @@ function checkInitialGameState(page, client) {
   page.expect.element(page.cell(rowSize * rowSize)).to.be.visible;
   page.expect.element('@reservedCell').to.be.not.present;
   client.url(result => {
+    // console.log(result);
     const [, side] = /side=(x|o)/gi.exec(result.value);
-    page.expect
-      .element('@infoTitle')
-      .text.to.equal(side === 'x' ? 'Ваш ход' : 'Ожидайте');
+    page.expect.element('@infoTitle').text.to.equal(side === 'x' ? 'Ваш ход' : 'Ожидайте');
   });
 }
 
 const defaultPostCheck = (client, side) => {
   const page = client.page.game();
   page.expect.element('@wonTitle').to.be.visible;
-  page.expect
-    .element('@wonTitle')
-    .text.to.equal(side === 'x' ? 'Крест выиграл!' : 'Ноль выиграл!');
+  page.expect.element('@wonTitle').text.to.equal(side === 'x' ? 'Крест выиграл!' : 'Ноль выиграл!');
   page.expect
     .element('@gameSpace')
     .to.have.attribute('disabled')
@@ -63,11 +60,7 @@ function checkSurrend(client, side) {
     client.surrendBot();
     page.click(page.cell(1));
   }
-  page.waitForElementText(
-    '@wonTitle',
-    side === 'x' ? 'Ноль выиграл!' : 'Крест выиграл!',
-    200,
-  );
+  page.waitForElementText('@wonTitle', side === 'x' ? 'Ноль выиграл!' : 'Крест выиграл!', 200);
   page.expect.element('@surrendBtn').to.be.not.visible;
   page.expect
     .element('@gameSpace')
@@ -85,17 +78,9 @@ function checkMultiMove(page) {
 
 function checkDoubleReserve(page, client) {
   page.click(page.cell(1));
-  client.waitForElementText(
-    '#info-title > .message:first-child',
-    'Ожидайте',
-    500,
-  );
+  client.waitForElementText('#info-title > .message:first-child', 'Ожидайте', 500);
   client.makeBotMove(2);
-  client.waitForElementText(
-    '#info-title > .message:first-child',
-    'Ваш ход',
-    500,
-  );
+  client.waitForElementText('#info-title > .message:first-child', 'Ваш ход', 500);
   page.click(page.cell(2));
 }
 
