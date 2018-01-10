@@ -38,13 +38,11 @@ socket.on('remove', gameId => {
 });
 
 socket.on('startGame', game => {
-  document.location = 'game.html';
-  localStorage.setItem('side', game.side);
+  document.location = `${'game.html?side='}${game.side}`;
+  // localStorage.setItem('side', game.side);
 });
 
 socket.on('exception', error => {
-  //  {action: 'exception', message: 'message'} - вы делаете что-то не так и веб
-  // сервер сообщает Вам об этом.
   const errorMsg = document.querySelector('#alert');
   if (error.message) {
     errorMsg.style.display = 'block';

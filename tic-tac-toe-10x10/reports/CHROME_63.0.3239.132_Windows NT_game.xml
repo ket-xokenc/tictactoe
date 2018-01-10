@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites errors="1"
+<testsuites errors="0"
             failures="0"
             tests="15">
 
   <testsuite name="game"
-    errors="1" failures="0" hostname="" id="" package="game" skipped="14"
-    tests="15" time="3.938" timestamp="Tue, 09 Jan 2018 11:31:15 GMT">
+    errors="0" failures="0" hostname="" id="" package="game" skipped="0"
+    tests="15" time="90.42" timestamp="Wed, 10 Jan 2018 14:07:12 GMT">
   
-    <testcase name="Check initial game state" classname="game" time="3.938" assertions="12">
+    <testcase name="Check initial game state" classname="game" time="5.547" assertions="13">
+
+    
 
     
 
@@ -34,97 +36,529 @@
     
     </testcase>
   
+    <testcase name="Check multi move for cell" classname="game" time="3.977" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check multi cell reserve" classname="game" time="4.179" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check horizontal win" classname="game" time="5.041" assertions="14">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check vertical win" classname="game" time="5.037" assertions="14">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check right diagonal win" classname="game" time="5.043" assertions="14">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check left diagonal win" classname="game" time="4.973" assertions="14">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check horizontal boundery condition" classname="game" time="4.677" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check right diagonal boundery condition" classname="game" time="4.646" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check left diagonal boundery condition" classname="game" time="4.632" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check draw" classname="game" time="26.38" assertions="105">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check surrend by owner" classname="game" time="4.050" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check surrend by player" classname="game" time="3.923" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check move error" classname="game" time="4.214" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check unknow move error" classname="game" time="4.110" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
 
   
-    <system-err>
-        Error while running [Game / Check initial game state]:
 
-  TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of /side=(x|o)/gi.exec
-    at Object.client.url.result (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\tests\asserts\game.js:14:37)
-    at HttpRequest.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\index.js:366:18)
-    at emitTwo (events.js:126:13)
-    at HttpRequest.emit (events.js:214:7)
-    at HttpRequest.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\index.js:382:15)
-    at emitThree (events.js:136:13)
-    at HttpRequest.emit (events.js:217:7)
-    at IncomingMessage.&lt;anonymous&gt; (C:\Users\Tanya\projects\tic-tac-toe\tic-tac-toe-10x10\node_modules\nightwatch\lib\http\request.js:170:16)
-    at emitNone (events.js:111:20)
-    at IncomingMessage.emit (events.js:208:7)
-    </system-err>
-  
-
-  
-    
-    <testcase
-      name="Check multi move for cell" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check multi cell reserve" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check horizontal win" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check vertical win" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check right diagonal win" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check left diagonal win" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check horizontal boundery condition" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check right diagonal boundery condition" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check left diagonal boundery condition" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check draw" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check surrend by owner" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check surrend by player" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check move error" classname="game">
-      <skipped />
-    </testcase>
-    
-    <testcase
-      name="Check unknow move error" classname="game">
-      <skipped />
-    </testcase>
-    
   
   </testsuite>
 </testsuites>

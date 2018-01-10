@@ -32,8 +32,8 @@ WaitForText.prototype.command = function command(element, text, timeoutInMillise
     text,
     (result, loadedTimeInMilliseconds, actualText) => {
       const message = result
-        ? `waitForUrl: ${text}. Expression wasn true in ${timeoutInMilliseconds} ms.`
-        : `waitForUrl: ${text}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;
+        ? `WaitForText: ${text}. Expression wasn true in ${timeoutInMilliseconds} ms.`
+        : `WaitForText: ${text}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;
       this.client.assertion(result, actualText, text, message, true);
       this.emit('complete');
     },

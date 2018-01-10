@@ -28,13 +28,15 @@ function showGameOverMsg(side) {
   const wonTitle = document.querySelector('#won-title');
   const wonSide = document.querySelector('#won-title .message');
   const gameInfo = document.querySelector('#info-title');
+
+  field.setAttribute('disabled', true);
   wonTitle.style.display = 'block';
   if (side === 'x') {
     wonSide.textContent = 'Крест выиграл!';
   } else if (side === 'o') {
     wonSide.textContent = 'Ноль выиграл!';
   } else {
-    wonSide.textContent = 'Ничья!';
+    wonSide.textContent = 'Ничья';
   }
   gameInfo.style.display = 'none';
   field.removeEventListener('click', cellEventHandler);
@@ -43,7 +45,7 @@ function showGameOverMsg(side) {
 function showWhoMoves(step) {
   const msg = document.querySelector('#info-title .message');
   // msg.textContent = step === 'x' ? 'Chross step!' : 'Zero step!';
-  msg.textContent = step === true ? 'Ваш ход' : 'Ожидайте!';
+  msg.textContent = step === true ? 'Ваш ход' : 'Ожидайте';
 }
 
 function crossCellsForWin(comb, type) {
@@ -68,7 +70,7 @@ function subscribe() {
         if (!response.ended) {
           // waiting
           showWhoMoves(false);
-          field.removeEventListener('click', cellEventHandler);
+          // field.removeEventListener('click', cellEventHandler);
           setTimeout(subscribe, 300);
         } else {
           showGameOverMsg(response.win);
@@ -78,7 +80,11 @@ function subscribe() {
         showWhoMoves(true);
         field.addEventListener('click', cellEventHandler);
         const prevMove = document.querySelector(`[data-index='${response.move}']`);
-        prevMove.classList.add(localStorage.getItem('side') === 'x' ? 'r' : 'ch');
+        const url = new URL(document.location);
+        if (url.search.indexOf('side=') !== -1) {
+          const side = url.search[url.search.length - 1];
+          prevMove.classList.add(side === 'x' ? 'r' : 'ch');
+        }
         if (response.ended === true) {
           if (response.win !== null) {
             showGameOverMsg(response.win);
@@ -118,25 +124,30 @@ function getGameState() {
   })
     .then(response => response.json())
     .then(response => {
-      if (response.step !== localStorage.getItem('side')) {
-        showWhoMoves(false);
-        // disable field
-        field.removeEventListener('click', cellEventHandler);
-        subscribe();
-      } else {
-        field.addEventListener('click', cellEventHandler);
-        showWhoMoves(true);
-      }
-      if (response.ended === true) {
-        if (response.win !== null) {
-          showGameOverMsg(response.win);
-          if (response.info) {
-            crossCellsForWin(response.info.comb, response.info.type);
-          }
+      const url = new URL(document.location);
+      if (url.search.indexOf('side=') !== -1) {
+        const side = url.search[url.search.length - 1];
+        if (response.step !== side) {
+          showWhoMoves(false);
+          // disable field
+          // field.removeEventListener('click', cellEventHandler);
+          subscribe();
         } else {
-          showGameOverMsg();
+          // field.addEventListener('click', cellEventHandler);
+          showWhoMoves(true);
+        }
+        if (response.ended === true) {
+          if (response.win !== null) {
+            showGameOverMsg(response.win);
+            if (response.info) {
+              crossCellsForWin(response.info.comb, response.info.type);
+            }
+          } else {
+            showGameOverMsg();
+          }
         }
       }
+
       restoreMoves(response.reserved);
     });
 }
@@ -157,25 +168,42 @@ function cellEventHandler(event) {
       body: JSON.stringify({ move: moveId }),
     })
       .then(res => {
+        console.log(res);
         let cellClass = null;
         let errorMsg = null;
+        let side = null;
+        // const response = null;
+        const url = new URL(document.location);
+        if (url.search.indexOf('side=') !== -1) {
+          side = url.search[url.search.length - 1];
+        }
         switch (res.status) {
           case 200:
-            cellClass = localStorage.getItem('side') === 'x' ? 'ch' : 'r';
+            cellClass = side === 'x' ? 'ch' : 'r';
             event.target.classList.add(cellClass);
             showWhoMoves(false); // waiting
             // disable field
-            field.removeEventListener('click', cellEventHandler);
+            // field.removeEventListener('click', cellEventHandler);
             subscribe();
             break;
           case 410:
             getGameState();
             break;
           default:
+            // response = res.json();
+            // console.log(res);
             errorMsg = document.querySelector('#alert');
-            res.message
-              ? (errorMsg.textContent = res.message)
-              : (errorMsg.textContent = 'Неизвестная ошибка');
+            errorMsg.classList.add('error');
+            res.json().then(response => {
+              // console.log(response.message);
+              response.message
+                ? (errorMsg.textContent = response.message)
+                : (errorMsg.textContent = 'Неизвестная ошибка');
+            });
+            errorMsg.style.display = 'block';
+            // res.message
+            //   ? (errorMsg.textContent = res.message)
+            //   : (errorMsg.textContent = 'Неизвестная ошибка');
             // Прекратить выполнение любой логики, связанной с игрой кроме кнопки новой игры
             break;
         }
@@ -183,6 +211,14 @@ function cellEventHandler(event) {
       })
       .then(response => response.json())
       .then(response => {
+        // const errorMsg = document.querySelector('#alert');
+        // errorMsg.classList.add('error');
+        // errorMsg.style.display = 'block';
+        // response.message
+        //   ? (errorMsg.textContent = response.message)
+        //   : (errorMsg.textContent = 'Неизвестная ошибка');
+        console.log(response);
+        // console.log(response.message);
         if (response.win) {
           showGameOverMsg(response.win);
           if (response.info) {
