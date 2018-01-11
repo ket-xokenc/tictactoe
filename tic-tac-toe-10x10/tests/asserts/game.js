@@ -32,11 +32,11 @@ const defaultPostCheck = (client, side) => {
 const drawPostChecker = client => {
   const page = client.page.game();
   page.waitForElementPresent('@wonTitle', 500);
-  // client.waitForElementText('#won-title .message:first-child', 'Ничья', 1000);
-  // page.expect
-  //   .element('@gameSpace')
-  //   .to.have.attribute('disabled')
-  //   .equals('true');
+  client.waitForElementText('#won-title .message:first-child', 'Ничья', 1000);
+  page.expect
+    .element('@gameSpace')
+    .to.have.attribute('disabled')
+    .equals('true');
 };
 
 const checkDidntWin = client => {

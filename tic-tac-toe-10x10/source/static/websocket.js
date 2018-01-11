@@ -31,15 +31,12 @@ socket.on('add', gameId => {
 });
 
 socket.on('remove', gameId => {
-  //  {action: 'remove', id: '345678'} - удалить из списка "Существующие игры"
-  // игру с id ”345678". Она просто должна исчезнуть
   const gameList = document.querySelector('#game-list');
   gameList.removeChild.document.querySelector(`#${gameId.id}`).parentNode;
 });
 
 socket.on('startGame', game => {
   document.location = `${'game.html?side='}${game.side}`;
-  // localStorage.setItem('side', game.side);
 });
 
 socket.on('exception', error => {
@@ -70,14 +67,6 @@ function createGameHandler() {
         body: JSON.stringify({ playerId: socket.id, gameId: response.yourId }),
       }).then(res => {
         const errorMsg = document.querySelector('#alert');
-        // if (res.status === 410) {
-        //   errorMsg.style.display = 'block';
-        //   errorMsg.innerHTML = 'Ошибка старта игры: другой игрок не ответил';
-        // } else {
-        //   errorMsg.style.display = 'block';
-        //   errorMsg.innerHTML = 'Неизвестная ошибка старта игры';
-        // }
-
         switch (res.status) {
           case 410:
             errorMsg.style.display = 'block';
@@ -89,7 +78,6 @@ function createGameHandler() {
         }
       });
     })
-    // .then(() => {})
     .catch(() => {
       const errorMsg = document.querySelector('#alert');
       errorMsg.innerHTML = 'Ошибка создания игры';

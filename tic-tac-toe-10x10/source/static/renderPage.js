@@ -24,6 +24,15 @@ function generateRows(rowsCount, colsCount) {
   }
 }
 
+function showErrorMsg(response) {
+  const errorMsg = document.querySelector('#alert');
+  errorMsg.classList.add('error');
+  response.message
+    ? (errorMsg.textContent = response.message)
+    : (errorMsg.textContent = 'Неизвестная ошибка');
+  errorMsg.style.display = 'block';
+}
+
 function showGameOverMsg(side) {
   const wonTitle = document.querySelector('#won-title');
   const wonSide = document.querySelector('#won-title .message');
@@ -42,16 +51,28 @@ function showGameOverMsg(side) {
   field.removeEventListener('click', cellEventHandler);
 }
 
-function showWhoMoves(step) {
-  const msg = document.querySelector('#info-title .message');
-  // msg.textContent = step === 'x' ? 'Chross step!' : 'Zero step!';
-  msg.textContent = step === true ? 'Ваш ход' : 'Ожидайте';
-}
-
 function crossCellsForWin(comb, type) {
   comb.forEach(cell => {
     document.querySelector(`[data-index='${cell}']`).classList.add('win', _.kebabCase(type));
   });
+}
+
+function checkWinState(response) {
+  if (response.ended === true) {
+    if (response.win !== null) {
+      showGameOverMsg(response.win);
+      if (response.info) {
+        crossCellsForWin(response.info.comb, response.info.type);
+      }
+    } else {
+      showGameOverMsg();
+    }
+  }
+}
+
+function showWhoMoves(step) {
+  const msg = document.querySelector('#info-title .message');
+  msg.textContent = step === true ? 'Ваш ход' : 'Ожидайте';
 }
 
 function subscribe() {
@@ -68,9 +89,7 @@ function subscribe() {
       if (!response.move) {
         // not my step, waiting for enemy step
         if (!response.ended) {
-          // waiting
           showWhoMoves(false);
-          // field.removeEventListener('click', cellEventHandler);
           setTimeout(subscribe, 300);
         } else {
           showGameOverMsg(response.win);
@@ -85,20 +104,10 @@ function subscribe() {
           const side = url.search[url.search.length - 1];
           prevMove.classList.add(side === 'x' ? 'r' : 'ch');
         }
-        if (response.ended === true) {
-          if (response.win !== null) {
-            showGameOverMsg(response.win);
-            if (response.info) {
-              crossCellsForWin(response.info.comb, response.info.type);
-            }
-          } else {
-            showGameOverMsg();
-          }
-        }
+        checkWinState(response);
       }
     })
-    .catch(error => {
-      console.log(error);
+    .catch(() => {
       subscribe();
     });
 }
@@ -106,11 +115,18 @@ function subscribe() {
 function restoreMoves(movesObj) {
   Object.keys(movesObj).forEach(key => {
     const cellClass = key === 'x' ? 'ch' : 'r';
-    // console.log(movesObj[key]);
     movesObj[key].forEach(element => {
       document.querySelector(`[data-index='${element}']`).classList.add(cellClass);
     });
   });
+}
+
+function getSideFromUrl() {
+  const url = new URL(document.location);
+  if (url.search.indexOf('side=') !== -1) {
+    const side = url.search[url.search.length - 1];
+    return side;
+  }
 }
 
 function getGameState() {
@@ -124,30 +140,27 @@ function getGameState() {
   })
     .then(response => response.json())
     .then(response => {
-      const url = new URL(document.location);
-      if (url.search.indexOf('side=') !== -1) {
-        const side = url.search[url.search.length - 1];
-        if (response.step !== side) {
-          showWhoMoves(false);
-          // disable field
-          // field.removeEventListener('click', cellEventHandler);
-          subscribe();
-        } else {
-          // field.addEventListener('click', cellEventHandler);
-          showWhoMoves(true);
-        }
-        if (response.ended === true) {
-          if (response.win !== null) {
-            showGameOverMsg(response.win);
-            if (response.info) {
-              crossCellsForWin(response.info.comb, response.info.type);
-            }
-          } else {
-            showGameOverMsg();
+      const side = getSideFromUrl();
+      if (response.step !== side) {
+        // not my step, waiting
+        showWhoMoves(false);
+        subscribe();
+      } else {
+        showWhoMoves(true);
+      }
+      // the game is over
+      if (response.ended === true) {
+        // it's not a draw
+        if (response.win !== null) {
+          showGameOverMsg(response.win);
+          if (response.info) {
+            crossCellsForWin(response.info.comb, response.info.type);
           }
+        } else {
+          // it's a draw
+          showGameOverMsg();
         }
       }
-
       restoreMoves(response.reserved);
     });
 }
@@ -167,58 +180,31 @@ function cellEventHandler(event) {
       },
       body: JSON.stringify({ move: moveId }),
     })
-      .then(res => {
-        console.log(res);
+      .then(response => {
         let cellClass = null;
-        let errorMsg = null;
-        let side = null;
-        // const response = null;
-        const url = new URL(document.location);
-        if (url.search.indexOf('side=') !== -1) {
-          side = url.search[url.search.length - 1];
-        }
-        switch (res.status) {
+        const errorMsg = document.querySelector('#alert');
+        const side = getSideFromUrl();
+        switch (response.status) {
           case 200:
             cellClass = side === 'x' ? 'ch' : 'r';
             event.target.classList.add(cellClass);
             showWhoMoves(false); // waiting
-            // disable field
-            // field.removeEventListener('click', cellEventHandler);
+            errorMsg.style.display = 'none';
             subscribe();
             break;
           case 410:
             getGameState();
             break;
           default:
-            // response = res.json();
-            // console.log(res);
-            errorMsg = document.querySelector('#alert');
-            errorMsg.classList.add('error');
-            res.json().then(response => {
-              // console.log(response.message);
-              response.message
-                ? (errorMsg.textContent = response.message)
-                : (errorMsg.textContent = 'Неизвестная ошибка');
+            response.json().then(res => {
+              showErrorMsg(res);
             });
-            errorMsg.style.display = 'block';
-            // res.message
-            //   ? (errorMsg.textContent = res.message)
-            //   : (errorMsg.textContent = 'Неизвестная ошибка');
-            // Прекратить выполнение любой логики, связанной с игрой кроме кнопки новой игры
             break;
         }
-        return res;
+        return response;
       })
       .then(response => response.json())
       .then(response => {
-        // const errorMsg = document.querySelector('#alert');
-        // errorMsg.classList.add('error');
-        // errorMsg.style.display = 'block';
-        // response.message
-        //   ? (errorMsg.textContent = response.message)
-        //   : (errorMsg.textContent = 'Неизвестная ошибка');
-        console.log(response);
-        // console.log(response.message);
         if (response.win) {
           showGameOverMsg(response.win);
           if (response.info) {
@@ -240,15 +226,12 @@ function surrendBtnHandler() {
       'Game-ID': localStorage.getItem('Game-ID'),
     },
   }).then(response => {
-    const errorMsg = document.querySelector('#alert');
     switch (String(response.status).charAt(0)) {
       case '2':
         getGameState();
         break;
       default:
-        response.message
-          ? (errorMsg.textContent = response.message)
-          : (errorMsg.textContent = 'Неизвестная ошибка');
+        showErrorMsg(response);
         break;
     }
   });
