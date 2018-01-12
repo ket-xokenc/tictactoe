@@ -5,9 +5,9 @@
 
   <testsuite name="game-list"
     errors="0" failures="0" hostname="" id="" package="game-list" skipped="0"
-    tests="7" time="32.20" timestamp="Thu, 11 Jan 2018 16:02:21 GMT">
+    tests="7" time="35.45" timestamp="Fri, 12 Jan 2018 10:08:34 GMT">
   
-    <testcase name="Check initial lobby state elements" classname="game-list" time="10.49" assertions="10">
+    <testcase name="Check initial lobby state elements" classname="game-list" time="7.550" assertions="10">
 
     
 
@@ -30,7 +30,7 @@
     
     </testcase>
   
-    <testcase name="Check start game by game owner" classname="game-list" time="4.038" assertions="4">
+    <testcase name="Check start game by game owner" classname="game-list" time="5.356" assertions="4">
 
     
 
@@ -41,7 +41,7 @@
     
     </testcase>
   
-    <testcase name="Check start game by second player" classname="game-list" time="3.597" assertions="3">
+    <testcase name="Check start game by second player" classname="game-list" time="4.633" assertions="3">
 
     
 
@@ -50,7 +50,7 @@
     
     </testcase>
   
-    <testcase name="Check remove game" classname="game-list" time="3.538" assertions="4">
+    <testcase name="Check remove game" classname="game-list" time="4.658" assertions="4">
 
     
 
@@ -61,7 +61,7 @@
     
     </testcase>
   
-    <testcase name="Check exception handling" classname="game-list" time="3.444" assertions="3">
+    <testcase name="Check exception handling" classname="game-list" time="4.434" assertions="3">
 
     
 
@@ -70,7 +70,7 @@
     
     </testcase>
   
-    <testcase name="Check create game error handling" classname="game-list" time="3.553" assertions="3">
+    <testcase name="Check create game error handling" classname="game-list" time="4.357" assertions="3">
 
     
 
@@ -79,7 +79,7 @@
     
     </testcase>
   
-    <testcase name="Check unkonw create game error handling" classname="game-list" time="3.541" assertions="3">
+    <testcase name="Check unkonw create game error handling" classname="game-list" time="4.457" assertions="3">
 
     
 

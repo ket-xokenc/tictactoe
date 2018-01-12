@@ -2,7 +2,7 @@ const socket = io('/games');
 
 let counter = 1;
 
-function joinTheGame(event) {
+function joinTheGameHandler(event) {
   event.preventDefault();
   const roomId = event.target.getAttribute('id');
   localStorage.setItem('Player-ID', socket.id);
@@ -25,7 +25,7 @@ socket.on('add', gameId => {
   newGameLnk.setAttribute('id', gameId.id);
   newGameLnk.innerHTML = `Room ${counter}`;
   newGameEl.appendChild(newGameLnk);
-  newGameLnk.addEventListener('click', joinTheGame);
+  newGameLnk.addEventListener('click', joinTheGameHandler);
   gameList.appendChild(newGameEl);
   counter++;
 });

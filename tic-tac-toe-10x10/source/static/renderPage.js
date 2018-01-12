@@ -58,13 +58,14 @@ function crossCellsForWin(comb, type) {
 }
 
 function checkWinState(response) {
-  if (response.ended === true) {
+  if (response.ended) {
     if (response.win !== null) {
       showGameOverMsg(response.win);
       if (response.info) {
         crossCellsForWin(response.info.comb, response.info.type);
       }
     } else {
+      // it's a draw
       showGameOverMsg();
     }
   }
@@ -99,11 +100,8 @@ function subscribe() {
         showWhoMoves(true);
         field.addEventListener('click', cellEventHandler);
         const prevMove = document.querySelector(`[data-index='${response.move}']`);
-        const url = new URL(document.location);
-        if (url.search.indexOf('side=') !== -1) {
-          const side = url.search[url.search.length - 1];
-          prevMove.classList.add(side === 'x' ? 'r' : 'ch');
-        }
+        const side = getSideFromUrl();
+        prevMove.classList.add(side === 'x' ? 'r' : 'ch');
         checkWinState(response);
       }
     })

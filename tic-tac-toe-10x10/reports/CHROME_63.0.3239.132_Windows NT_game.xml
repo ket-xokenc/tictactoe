@@ -5,9 +5,9 @@
 
   <testsuite name="game"
     errors="0" failures="0" hostname="" id="" package="game" skipped="0"
-    tests="15" time="91.30" timestamp="Thu, 11 Jan 2018 16:02:53 GMT">
+    tests="15" time="112.3" timestamp="Fri, 12 Jan 2018 10:09:10 GMT">
   
-    <testcase name="Check initial game state" classname="game" time="4.161" assertions="13">
+    <testcase name="Check initial game state" classname="game" time="4.681" assertions="13">
 
     
 
@@ -36,7 +36,7 @@
     
     </testcase>
   
-    <testcase name="Check multi move for cell" classname="game" time="3.988" assertions="4">
+    <testcase name="Check multi move for cell" classname="game" time="4.421" assertions="4">
 
     
 
@@ -47,38 +47,7 @@
     
     </testcase>
   
-    <testcase name="Check multi cell reserve" classname="game" time="4.094" assertions="6">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check horizontal win" classname="game" time="5.136" assertions="14">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Check multi cell reserve" classname="game" time="4.538" assertions="6">
 
     
 
@@ -93,7 +62,7 @@
     
     </testcase>
   
-    <testcase name="Check vertical win" classname="game" time="5.055" assertions="14">
+    <testcase name="Check horizontal win" classname="game" time="5.564" assertions="14">
 
     
 
@@ -124,7 +93,7 @@
     
     </testcase>
   
-    <testcase name="Check right diagonal win" classname="game" time="5.153" assertions="14">
+    <testcase name="Check vertical win" classname="game" time="6.483" assertions="14">
 
     
 
@@ -155,7 +124,7 @@
     
     </testcase>
   
-    <testcase name="Check left diagonal win" classname="game" time="4.981" assertions="14">
+    <testcase name="Check right diagonal win" classname="game" time="5.744" assertions="14">
 
     
 
@@ -186,262 +155,7 @@
     
     </testcase>
   
-    <testcase name="Check horizontal boundery condition" classname="game" time="4.843" assertions="10">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check right diagonal boundery condition" classname="game" time="4.725" assertions="10">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check left diagonal boundery condition" classname="game" time="4.892" assertions="10">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check draw" classname="game" time="26.72" assertions="107">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Check left diagonal win" classname="game" time="7.033" assertions="14">
 
     
 
@@ -472,47 +186,7 @@
     
     </testcase>
   
-    <testcase name="Check surrend by owner" classname="game" time="4.973" assertions="8">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check surrend by player" classname="game" time="4.023" assertions="8">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Check move error" classname="game" time="4.388" assertions="11">
-
-    
+    <testcase name="Check horizontal boundery condition" classname="game" time="5.995" assertions="10">
 
     
 
@@ -535,7 +209,333 @@
     
     </testcase>
   
-    <testcase name="Check unknow move error" classname="game" time="4.169" assertions="11">
+    <testcase name="Check right diagonal boundery condition" classname="game" time="6.476" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check left diagonal boundery condition" classname="game" time="5.688" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check draw" classname="game" time="32.79" assertions="107">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check surrend by owner" classname="game" time="5.766" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check surrend by player" classname="game" time="5.080" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check move error" classname="game" time="6.312" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check unknow move error" classname="game" time="5.750" assertions="11">
 
     
 
